@@ -11,7 +11,7 @@ function setup() {
 // eslint-disable-next-line no-unused-vars
 function draw() {
     // R, G & B integer values
-    stroke(255, 204, 0);
-    strokeWeight(4);
+    stroke(255, 0, 0);
+    strokeWeight(5);
     circle(D/2, D/2, D/10);
 }
