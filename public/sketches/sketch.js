@@ -10,5 +10,5 @@ function setup() {
 
 // eslint-disable-next-line no-unused-vars
 function draw() {
-
+    circle(30, 30, 20);
 }
