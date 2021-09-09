@@ -1,8 +1,8 @@
 {
   "name": "p5pg",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.2",
+  "description": "p5.js playgound",
+  "main": "src/index.js",
   "scripts": {
     "lint": "eslint -c ./.eslintrc.json public/sketches/",
     "start": "nodemon src/",
@@ -15,8 +15,8 @@
     ],
     "delay": 500
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Michael Rubanov<psy.set@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "config": "^3.3.6",
     "livereload": "^0.9.3",
