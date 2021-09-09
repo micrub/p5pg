@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint -c ./.eslintrc.json public/sketches/",
     "start": "DEBUG=* node src/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,11 +11,5 @@
   "license": "ISC",
   "dependencies": {
     "node-static": "^0.7.11"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0",
-    "eslint": "^7.32.0",
-    "husky": "^7.0.2"
   }
 }
