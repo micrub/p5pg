@@ -5,10 +5,10 @@ const D  = 400;
 function setup() {
     createCanvas(D,D);
     background(1);
-    console.log('hlo from setup', {canvas: {D}});
+    console.info('canvas setup', {canvas: {D}});
 }
 
 // eslint-disable-next-line no-unused-vars
 function draw() {
-    circle(D/2, D/2, 20);
+    circle(D/2, D/2, 40);
 }

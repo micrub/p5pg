@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint -c ./.eslintrc.json public/sketches/",
-    "start": "DEBUG=* node src/",
+    "start": "DEBUG=* nodemon src/",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "nodemonConfig": {
+    "ignore": ["src/*", "public/lib/*"],
+    "delay": 500
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +21,7 @@
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
     "eslint": "^7.32.0",
-    "husky": "^7.0.2"
+    "husky": "^7.0.2",
+    "nodemon": "^2.0.12"
   }
 }
