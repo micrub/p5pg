@@ -43,8 +43,16 @@ function publicContentSource() {
 
 //TODO refactor to di
 //TODO jsdocs
-const SERVER_ROOT = new(static.Server)(publicContentSource());
+function getPublicSource() {
+    return publicContentSource();
+}
+
+const PUBLIC_SRC = getPublicSource();
+const SERVER_ROOT = new(static.Server)(PUBLIC_SRC);
+
 function staticContentRequestListener(staticContentRoot = SERVER_ROOT) {
+    // TODO refactor for custom static root folders
+    process.env.PUBLIC_SRC = PUBLIC_SRC;
     return (req, res) => {
         staticContentRoot.serve(req, res);
     };
@@ -59,14 +67,32 @@ function startHttpd(options = {},
     if (!onListen) {
         onListen = defaultListener(server);
     }
-    server.listen(8080, onListen);
+    server.listen(8080,'localhost', onListen);
 
     function defaultListener(server) {
         return () => {
-            console.warn(`http-static running on ${  server.port}` );
+            const instanceAddress = server.address();
+            const port = instanceAddress.port;
+            const address = instanceAddress.address;
+            // TODO refactor for custom static root folders
+            const rootFolder = process.env.PUBLIC_SRC;
+            //TODO print source directory
+            function formatMessage(address, port, rootFolder) {
+                let msg = 'Start http-static on '; 
+                msg += `'http://${address}:${port}', ${rootFolder}`;
+                return msg;
+            }
+            
+            console.info(formatMessage(address, port, rootFolder));
         };
     }
 }
 //TODO lyfecicle managed using npm runscript
-startHttpd();
+
+// eslint-disable-next-line no-unused-vars
+const server = startHttpd();
+// TODO stop on signal
+// server.stop(()=>{
+//     log('stopped')
+// })
 
