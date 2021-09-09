@@ -1,6 +1,7 @@
 const static = require('node-static');
 const http = require('http');
 const path = require('path');
+const config = require('config');
 
 // TODO handle hot reload
 
@@ -63,19 +64,27 @@ function startHttpd(options = {},
     requestListener = staticContentRequestListener(), 
     onListen) {
     const server = http.createServer(options, requestListener);
-
+    // TODO refactor for custom static root folders
+    const rootFolder = process.env.PUBLIC_SRC;
     if (!onListen) {
         onListen = defaultListener(server);
     }
     server.listen(8080,'localhost', onListen);
+
+    if(config.livereload) {
+        var livereload = require('livereload');
+        var lrserver = livereload.createServer();
+        lrserver.watch(path.join(rootFolder,'sketches'));
+    }
+
 
     function defaultListener(server) {
         return () => {
             const instanceAddress = server.address();
             const port = instanceAddress.port;
             const address = instanceAddress.address;
-            // TODO refactor for custom static root folders
-            const rootFolder = process.env.PUBLIC_SRC;
+
+
             //TODO print source directory
             function formatMessage(address, port, rootFolder) {
                 let msg = 'Start http-static on '; 

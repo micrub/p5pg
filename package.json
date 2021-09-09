@@ -5,16 +5,21 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint -c ./.eslintrc.json public/sketches/",
-    "start": "DEBUG=* nodemon src/",
+    "start": "nodemon src/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "nodemonConfig": {
-    "ignore": ["src/*", "public/lib/*"],
+    "ignore": [
+      "src/*",
+      "public/lib/*"
+    ],
     "delay": 500
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "config": "^3.3.6",
+    "livereload": "^0.9.3",
     "node-static": "^0.7.11"
   },
   "devDependencies": {
