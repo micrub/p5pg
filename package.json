@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint -c ./.eslintrc.json public/sketches/",
     "start": "nodemon src/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify public/sketches/sketch.js -o public/lib/bundle.js"
   },
   "nodemonConfig": {
     "ignore": [
@@ -20,6 +21,7 @@
   "dependencies": {
     "config": "^3.3.6",
     "livereload": "^0.9.3",
+    "multidimensional": "^1.0.1",
     "node-static": "^0.7.11"
   },
   "devDependencies": {
