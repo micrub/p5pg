@@ -1,9 +1,8 @@
+
 const static = require('node-static');
 const http = require('http');
 const path = require('path');
 const config = require('config');
-
-// TODO handle hot reload
 
 /**
  * Custom InvalidArgumentException error type
@@ -69,7 +68,7 @@ function startHttpd(options = {},
     if (!onListen) {
         onListen = defaultListener(server);
     }
-    server.listen(8080,'localhost', onListen);
+    server.listen(9090,'localhost', onListen);
 
     if(config.livereload) {
         var livereload = require('livereload');
@@ -100,6 +99,8 @@ function startHttpd(options = {},
 
 // eslint-disable-next-line no-unused-vars
 const server = startHttpd();
+
+
 // TODO stop on signal
 // server.stop(()=>{
 //     log('stopped')
