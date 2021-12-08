@@ -68,6 +68,7 @@ function draw() {
     // drawCircle();
     struct.map((d,zindex) => {
         // l(zindex, d);
+        
       
     });
     box(BOXSIZE);
