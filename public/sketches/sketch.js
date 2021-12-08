@@ -13,25 +13,23 @@ function rangeSigned(size = 4) {
         throw new Error('Size is even.');
     }
     const half = size / 2;
-    console.log(-half,half);
     return R.range(-half,half+1);
 }
 function even(number) {
     return !( number % 2 != 0 );
     
 }
-const F = rangeSigned(SECTIONS);
-const d1 = [...F];
-const d2 = [...F];
-const d3 = [...F];
-
 const STATE = {
-    struct : [
-        d1,
-        d2,
-        d3
-    ]
+    struct : structDimensions()
 };
+
+function structDimensions() {
+    const F = rangeSigned(SECTIONS);
+    const d1 = [...F];
+    const d2 = [...F];
+    const d3 = [...F];
+    return [d1, d2, d3 ];
+}
 
 function populateStruct(struct){
     if (!struct) {
