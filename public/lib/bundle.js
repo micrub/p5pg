@@ -15075,35 +15075,34 @@ module.exports = zipWith;
 window.require = require;
 const R = require('ramda');
 const D  = 200;
-const SECTIONS = 11;
+const SECTIONS = 4;
 
 function range(size = 0) {
     const half = size / 2;
     return R.range(0,size-1);
 }
 function rangeSigned(size = 4) {
-    if (even(size)) {
+    if (!even(size)) {
         throw new Error('Size is even.');
     }
     const half = size / 2;
-    return R.range(-half,half);
+    return R.range(-half,half+1);
 }
 function even(number) {
     return !( number % 2 != 0 );
     
 }
-const F = rangeSigned(SECTIONS);
-const d1 = [...F];
-const d2 = [...F];
-const d3 = [...F];
-
 const STATE = {
-    struct : [
-        d1,
-        d2,
-        d3
-    ]
+    struct : structDimensions()
 };
+
+function structDimensions() {
+    const F = rangeSigned(SECTIONS);
+    const d1 = [...F];
+    const d2 = [...F];
+    const d3 = [...F];
+    return [d1, d2, d3 ];
+}
 
 function populateStruct(struct){
     if (!struct) {
