@@ -22,6 +22,7 @@
     "config": "^3.3.6",
     "livereload": "^0.9.3",
     "node-static": "^0.7.11",
+    "p5.easycam": "^1.0.0",
     "ramda": "^0.27.1"
   },
   "devDependencies": {
