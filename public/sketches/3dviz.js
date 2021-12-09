@@ -80,6 +80,13 @@ function drawD(rng, step, axis = X) {
     }
 }
 
+function drawDPartial(rng, step) {
+    return (axis) => {
+        drawD(rng,step,axis);
+    };
+    
+}
+
 
 // eslint-disable-next-line no-unused-vars
 function draw() {
@@ -91,8 +98,10 @@ function draw() {
     ortho(-ox, +ox, -oy, +oy, -10000, 10000);
     easycam.setPanScale(0.004 / sqrt(cam_dist));
 
+    const drawAxis = drawDPartial(dim,step);
+
     background(125);
-    drawD(dim, step, X);
-    drawD(dim, step, Y);
-    drawD(dim, step, Z);
+    drawAxis(X);
+    drawAxis(Y);
+    drawAxis(Z);
 }
