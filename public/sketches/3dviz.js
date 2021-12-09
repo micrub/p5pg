@@ -54,8 +54,8 @@ function drawPoint(x = 0, y = 0, z = 0) {
     strokeWeight(10); // Make the points 10 pixels
     point(x, y, z);
 }
-
-function drawD(rng, step, axis = X) {
+function mapCords(rng, step, axis = X) {
+    let axisCords = [];
     for (let index = 0; index < rng.length; index++) {
         const degree = rng[index];
         const offset = degree * step;
@@ -75,9 +75,17 @@ function drawD(rng, step, axis = X) {
             cords = [offset, 0, 0];
             break;
         }
-        let [x,y,z] = cords;    
-        drawPoint(x, y,z);
+        axisCords.push(cords);
     }
+    return axisCords;
+}
+function drawD(rng, step, axis = X) {
+    const axisCords = mapCords(rng,step, axis);
+    axisCords.map((cords,k) => {
+        const [x,y,z] = cords;
+        drawPoint(x,y,z);
+    });
+
 }
 
 function drawDPartial(rng, step) {
