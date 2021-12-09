@@ -2,8 +2,9 @@
 const D = 500;
 const HD = D / 2;
 const SIZE = 10;
+const l =console.log;
 
-const [X, Y, Z] = ['x', 'y', 'z'];
+const [X, Y, Z] = [Symbol('X'),Symbol('Y'),Symbol('Z')];
 
 let d;
 let dn;
@@ -58,37 +59,27 @@ function drawD(rng, step, axis = X) {
     for (let index = 0; index < rng.length; index++) {
         const degree = rng[index];
         const offset = degree * step;
+        let cords;
+
         switch (axis) {
         case X:
-            drawPoint(offset, Y, Z);
+            cords = [offset, 0, 0];
             break;
         case Y:
-            drawPoint(X, offset, Z);
+            cords = [0, offset, 0];
             break;
         case Z:
-            drawPoint(X, Y, offset);
+            cords = [0, 0, offset];
             break;
         default:
-            drawPoint(offset, Y, Z);
+            cords = [offset, 0, 0];
             break;
         }
+        let [x,y,z] = cords;    
+        drawPoint(x, y,z);
     }
 }
-function drawDY(dimen, step) {
-    const X = 0,
-        Z = 0;
-    for (let index = 0; index < dimen.length; index++) {
-        const degree = dim[index];
-        drawPoint(X, degree * step, Z);
-    }
-}
-function drawDZ(dimen, step) {
-    const X = 0, Y = 0;
-    for (let index = 0; index < dimen.length; index++) {
-        const degree = dim[index];
-        drawPoint(X, Y, degree * step);
-    }
-}
+
 
 // eslint-disable-next-line no-unused-vars
 function draw() {
@@ -101,65 +92,7 @@ function draw() {
     easycam.setPanScale(0.004 / sqrt(cam_dist));
 
     background(125);
-    drawDX(dim, step);
-    drawDY(dim, step);
-    drawDZ(dim, step);
+    drawD(dim, step, X);
+    drawD(dim, step, Y);
+    drawD(dim, step, Z);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
